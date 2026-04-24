@@ -39,7 +39,6 @@
         .main-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: start; }
         @media (min-width: 900px) { .main-grid { grid-template-columns: 1.8fr 1.2fr; } }
 
-        /* INPUT CARD */
         .card { 
             background: #0f0f0f; 
             border: 1px solid #1a2e1a; 
@@ -47,7 +46,6 @@
             border-radius: 12px;
         }
 
-        /* RESULT SIDEBAR */
         .result-card { 
             background: #000; 
             border: 2px solid #a3e635; 
@@ -107,7 +105,7 @@
 
         .total-price { font-size: 52px; font-weight: 800; margin: 15px 0; color: #FFFFFF; letter-spacing: -2px; }
 
-        /* IN-SIDEBAR SUPPORT DATA */
+        /* HOSTING & SUPPORT DATA */
         .support-meta-wrap {
             margin-top: 25px;
             padding-top: 20px;
@@ -117,15 +115,28 @@
 
         .support-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 11px; }
         .support-key { color: #444; text-transform: uppercase; font-weight: 800; }
-        .support-val { color: #888; font-family: monospace; }
-        .status-active { color: #a3e635; }
+        .support-val { color: #888; font-variant-numeric: tabular-nums; }
 
-        .copy-btn { 
-            background: transparent; color: #a3e635; border: 2px solid #a3e635; 
-            padding: 16px; border-radius: 10px; font-size: 12px; font-weight: 800; 
-            text-transform: uppercase; cursor: pointer; width: 100%; margin-top: 20px;
+        .btn-action { 
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            padding: 16px; 
+            border-radius: 10px; 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            width: 100%; 
+            margin-top: 15px;
+            transition: all 0.2s;
         }
+
+        .copy-btn { background: transparent; color: #a3e635; border: 2px solid #a3e635; }
         .copy-btn:hover { background: #a3e635; color: #000; }
+
+        .coffee-btn { background: #fbbf24; color: #000; border: none; font-weight: 900; }
+        .coffee-btn:hover { background: #fff; transform: translateY(-2px); }
 
         footer { 
             margin-top: 60px; width: 100%; display: flex; justify-content: space-between; 
@@ -196,20 +207,21 @@
                 
                 <div class="support-meta-wrap">
                     <div class="support-row">
-                        <span class="support-key">Site ID</span>
-                        <span class="support-val">tb-prod-882</span>
+                        <span class="support-key">Monthly Hosting</span>
+                        <span class="support-val">$14.00</span>
                     </div>
                     <div class="support-row">
-                        <span class="support-key">Netlify Status</span>
-                        <span class="support-val status-active">● Active</span>
+                        <span class="support-key">API Maintenance</span>
+                        <span class="support-val">$28.50</span>
                     </div>
                     <div class="support-row">
-                        <span class="support-key">Build Ref</span>
-                        <span class="support-val">#429-XF</span>
+                        <span class="support-key">Community Support</span>
+                        <span class="support-val" style="color:#fbbf24;">OPEN BETA</span>
                     </div>
                 </div>
 
-                <button type="button" class="copy-btn" @click="copyQuote()">Copy Quote Report</button>
+                <button type="button" class="btn-action copy-btn" @click="copyQuote()">Copy Quote Report</button>
+                <a href="https://buymeacoffee.com/tokenburn" class="btn-action coffee-btn">☕ Buy Me a Coffee</a>
             </div>
         </div>
 
@@ -250,14 +262,14 @@
                 },
                 async copyQuote() {
                     const report = {
-                        site: "tb-prod-882",
+                        app: "TokenBurn.org",
                         model: this.selectedModel,
                         config: { loops: this.loops, complexity: this.complexity },
-                        estimated_burn: `$${this.calculateTotal()}`,
+                        burn: `$${this.calculateTotal()}`,
                         timestamp: new Date().toISOString()
                     };
                     await navigator.clipboard.writeText(JSON.stringify(report, null, 2));
-                    alert("Full Quote Report copied to clipboard as JSON.");
+                    alert("Report Copied.");
                 }
             }
         }
