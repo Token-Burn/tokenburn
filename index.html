@@ -49,7 +49,15 @@
         .main-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         @media (min-width: 900px) { .main-grid { grid-template-columns: 2fr 1.2fr; } }
 
-        .card { background: #0f0f0f; border: 1px solid #1a2e1a; padding: 30px; border-radius: 8px; box-sizing: border-box; }
+        /* Tightened Bounding Box */
+        .card { 
+            background: #0f0f0f; 
+            border: 1px solid #1a2e1a; 
+            padding: 20px 25px 10px 25px; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+        }
+
         .result-card { 
             background: #000; 
             border: 2px solid #a3e635; 
@@ -65,16 +73,17 @@
             font-weight: 700; 
             color: #a3e635; 
             text-transform: uppercase; 
-            margin-bottom: 12px; 
+            margin-bottom: 8px; 
             letter-spacing: 0.08em; 
         }
 
+        /* Compact Dropdown with Alternating Colors */
         select { 
             width: 100%; 
             background: #111111; 
             color: #fbbf24; 
             border: 1px solid #1a2e1a; 
-            padding: 15px; 
+            padding: 12px; 
             border-radius: 8px; 
             font-size: 13px; 
             font-weight: 500; 
@@ -83,21 +92,21 @@
             background-repeat: no-repeat; 
             background-position: right 1rem center; 
             background-size: 1em; 
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             cursor: pointer; 
         }
 
-        /* Zebra Striping for the dropdown */
         select option { background: #141414; color: #fbbf24; padding: 10px; }
         select option:nth-child(even) { background-color: #1a1a1a !important; }
 
+        /* Tightened Sliders */
         input[type="range"] { 
             width: 100%; 
             height: 8px; 
             background: #1a1a1a; 
             border-radius: 8px; 
             outline: none; 
-            margin: 15px 0 35px 0; 
+            margin: 10px 0 20px 0; 
             accent-color: #fbbf24; 
             cursor: pointer; 
         }
@@ -105,26 +114,40 @@
         .val-display { display: flex; justify-content: space-between; align-items: baseline; }
         .big-num { color: #fbbf24; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
 
-        .complexity-toggle { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 25px 0; }
+        /* Complexity Section Spacing */
+        .cx-prompt { 
+            color: #a3e635; 
+            font-size: 10px; 
+            font-weight: 500; 
+            margin: 20px 0 15px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+        }
+
+        .complexity-toggle { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 8px; 
+            margin: 0 0 25px 0; 
+        }
+
         .complexity-btn { 
             background: transparent; 
             color: #a3e635; 
             border: 1px solid rgba(163, 230, 53, 0.3); 
-            padding: 14px 12px; 
+            padding: 8px 12px; 
             border-radius: 8px; 
             cursor: pointer; 
             text-align: left; 
             transition: all 0.12s ease; 
-            line-height: 1.4; 
+            line-height: 1.2; 
         }
 
         .complexity-btn:hover { border-color: #a3e635; box-shadow: 0 0 12px rgba(163, 230, 53, 0.2); }
         .complexity-btn.active { background: #a3e635; color: #000000; border-color: #a3e635; }
         .complexity-btn .cx-label { display: block; font-size: 13px; font-weight: 600; color: inherit; text-transform: uppercase; }
-        .complexity-btn .cx-meta { display: block; font-size: 10px; font-weight: 500; color: #9ca3af; margin-top: 6px; text-transform: uppercase; }
+        .complexity-btn .cx-meta { display: block; font-size: 10px; font-weight: 500; color: #9ca3af; margin-top: 4px; text-transform: uppercase; }
         .complexity-btn.active .cx-label, .complexity-btn.active .cx-meta { color: #000000; }
-
-        .cx-prompt { color: #a3e635; font-size: 10px; font-weight: 500; margin: -5px 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; }
 
         .total-price { font-size: 44px; font-weight: 700; margin: 10px 0; letter-spacing: -1.5px; color: #FFFFFF; text-align: center; line-height: 1.1; font-variant-numeric: tabular-nums; }
         .sub-label { font-size: 10px; font-weight: 700; color: #a3e635; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
@@ -185,7 +208,6 @@
         .footer-links a:hover { color: #a3e635; }
         .footer-copy { color: #e5e7eb; font-size: 10px; margin-top: 30px; opacity: 0.6; }
 
-        /* Modal Styles */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; backdrop-filter: blur(3px); }
         .dialog { width: 100%; max-width: 520px; background: #000; border: 2px solid #a3e635; border-radius: 8px; box-shadow: 0 0 40px rgba(163, 230, 53, 0.35); color: #a3e635; overflow: hidden; }
         .dialog-titlebar { display: flex; align-items: center; justify-content: space-between; background: #a3e635; color: #000; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
@@ -320,10 +342,10 @@
         function burnEngine() {
             return {
                 inputTokens: 2000,
-                loops: 5,
-                complexity: 'simple',
-                compoundingFactor: 0.10,
-                selectedModel: 'DeepSeek V4-Flash',
+                loops: 30,
+                complexity: 'refactor',
+                compoundingFactor: 0.20,
+                selectedModel: 'GPT-5.5 Max',
                 copied: false,
                 modelList: [
                     { name: 'DeepSeek V4-Flash',  per1k: 0.0001 },
