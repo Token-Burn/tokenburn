@@ -15,60 +15,61 @@
             background-color: #050505; 
             color: #ffffff; 
             margin: 0; 
-            padding: 20px; 
+            padding: 40px 20px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            min-height: 100vh;
         }
 
         .container { max-width: 1100px; width: 100%; }
-        header { text-align: center; margin-bottom: 40px; margin-top: 20px; }
+        header { text-align: center; margin-bottom: 50px; }
         
         h1 { 
-            font-size: clamp(2rem, 8vw, 4rem); 
+            font-size: clamp(2.5rem, 8vw, 4rem); 
             margin: 0; 
             font-weight: 700; 
             letter-spacing: -3px; 
             text-transform: uppercase; 
             line-height: 0.9; 
-            color: #FFFFFF; 
         }
 
         .yellow { color: #fbbf24; }
         .green { color: #a3e635; }
 
-        .main-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        @media (min-width: 900px) { .main-grid { grid-template-columns: 2fr 1.2fr; } }
+        .main-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: start; }
+        @media (min-width: 900px) { .main-grid { grid-template-columns: 1.8fr 1.2fr; } }
 
-        /* BALANCED BOUNDING BOX: Not OTT, but enough for a border */
+        /* THE BOUNDING BOX: Tight frame, no excess vertical waste */
         .card { 
             background: #0f0f0f; 
             border: 1px solid #1a2e1a; 
-            padding: 25px; /* Moderate padding */
-            border-radius: 10px; 
+            padding: 30px; 
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
         }
 
         .result-card { 
             background: #000; 
             border: 2px solid #a3e635; 
             text-align: center; 
-            box-shadow: 0 0 30px rgba(163, 230, 53, 0.15); 
-            position: sticky; 
-            top: 20px; 
-            padding: 30px 20px;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(163, 230, 53, 0.1);
         }
 
-        .input-group { margin-bottom: 25px; }
+        /* Grouping with consistent breathing room */
+        .input-group { margin-bottom: 30px; }
+        .input-group:last-child { margin-bottom: 0; } /* Snaps the bounding box bottom */
 
         label { 
             display: block; 
-            font-size: 10px; 
+            font-size: 11px; 
             font-weight: 700; 
             color: #a3e635; 
             text-transform: uppercase; 
-            margin-bottom: 12px; 
-            letter-spacing: 0.08em; 
+            margin-bottom: 15px; 
+            letter-spacing: 0.1em; 
         }
 
         /* DROPDOWN: Alternating Colors */
@@ -77,15 +78,14 @@
             background: #111111; 
             color: #fbbf24; 
             border: 1px solid #1a2e1a; 
-            padding: 15px; 
+            padding: 16px; 
             border-radius: 8px; 
-            font-size: 14px; 
-            font-weight: 500; 
+            font-size: 15px; 
             appearance: none; 
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
             background-repeat: no-repeat; 
-            background-position: right 1rem center; 
-            background-size: 1em; 
+            background-position: right 1.2rem center; 
+            background-size: 1.1em; 
             cursor: pointer; 
         }
 
@@ -95,59 +95,54 @@
 
         input[type="range"] { 
             width: 100%; 
-            height: 8px; 
+            height: 10px; 
             background: #1a1a1a; 
-            border-radius: 8px; 
+            border-radius: 10px; 
             outline: none; 
-            margin-top: 10px;
+            margin-top: 15px;
             accent-color: #fbbf24; 
             cursor: pointer; 
         }
 
         .val-display { display: flex; justify-content: space-between; align-items: baseline; }
-        .big-num { color: #fbbf24; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+        .big-num { color: #fbbf24; font-size: 24px; font-weight: 700; }
 
-        /* BUTTONS: Larger click targets but tighter layout */
+        /* BUTTONS: Large and Tactile */
         .complexity-toggle { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 10px; 
-            margin-top: 5px;
+            gap: 12px; 
         }
 
         .complexity-btn { 
             background: transparent; 
             color: #a3e635; 
             border: 1px solid rgba(163, 230, 53, 0.3); 
-            padding: 18px 12px; 
-            border-radius: 8px; 
+            padding: 22px 15px; 
+            border-radius: 10px; 
             cursor: pointer; 
             text-align: left; 
-            transition: all 0.12s ease; 
         }
 
-        .complexity-btn.active { background: #a3e635; color: #000000; border-color: #a3e635; }
-        .cx-label { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; }
-        .cx-meta { display: block; font-size: 10px; font-weight: 500; color: #9ca3af; margin-top: 4px; text-transform: uppercase; }
-        .complexity-btn.active .cx-meta { color: #000000; opacity: 0.8; }
+        .complexity-btn.active { background: #a3e635; color: #000; border-color: #a3e635; }
+        .cx-label { display: block; font-size: 14px; font-weight: 800; text-transform: uppercase; }
+        .cx-meta { display: block; font-size: 11px; margin-top: 4px; opacity: 0.8; }
 
-        .total-price { font-size: 48px; font-weight: 800; margin: 15px 0; color: #FFFFFF; text-align: center; letter-spacing: -1px; }
+        .total-price { font-size: 56px; font-weight: 800; margin: 20px 0; color: #FFFFFF; letter-spacing: -2px; }
         
         .copy-btn { 
-            display: inline-block; 
-            margin-top: 20px; 
             background: transparent; 
             color: #a3e635; 
-            border: 1.5px solid #a3e635; 
-            padding: 12px 20px; 
-            border-radius: 8px; 
-            font-size: 11px; 
-            font-weight: 700; 
+            border: 2px solid #a3e635; 
+            padding: 16px; 
+            border-radius: 10px; 
+            font-size: 12px; 
+            font-weight: 800; 
             text-transform: uppercase; 
             cursor: pointer; 
             width: 100%;
         }
-        .copy-btn:hover { background: #a3e635; color: #000000; }
+        .copy-btn:hover { background: #a3e635; color: #000; }
     </style>
 </head>
 
@@ -184,7 +179,7 @@
                     <input type="range" min="1" max="50" step="1" x-model="loops">
                 </div>
 
-                <div class="input-group" style="margin-bottom: 0;">
+                <div class="input-group">
                     <label>Task Complexity Profile</label>
                     <div class="complexity-toggle">
                         <button type="button" class="complexity-btn" :class="{ active: complexity === 'simple' }" @click="applyComplexity('simple')">
@@ -203,10 +198,10 @@
                 </div>
             </div>
 
-            <div class="card result-card">
-                <label>Estimated Session Cost</label>
+            <div class="result-card">
+                <label>Estimated Session Burn</label>
                 <div class="total-price" x-text="'$' + calculateTotal()"></div>
-                <p style="font-size: 11px; color: #9ca3af; text-transform: uppercase;" x-text="selectedModel"></p>
+                <p style="font-size: 12px; color: #9ca3af; text-transform: uppercase;" x-text="selectedModel"></p>
                 <button type="button" class="copy-btn" @click="copyResult()">Copy Quote Report</button>
             </div>
         </div>
@@ -238,11 +233,9 @@
                 calculateTotal() {
                     const model = this.modelList.find(m => m.name === this.selectedModel);
                     const total = (this.inputTokens * Math.pow(1 + this.compoundingFactor, this.loops)) * (model.per1k / 1000);
-                    return total.toFixed(4);
+                    return total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4});
                 },
-                copyResult() {
-                    alert('Quote report ready for copy.');
-                }
+                copyResult() { alert('Copied'); }
             }
         }
     </script>
