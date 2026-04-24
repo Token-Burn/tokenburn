@@ -196,70 +196,54 @@
 
     <script>
         function burnEngine() {
-            return {
-                inputTokens: 2000,
-                loops: 5,
-                complexity: 'simple',
-                compoundingFactor: 0.10,
-                selectedModel: 'DeepSeek V4-Flash',
-                copied: false,
-                modelList: [
-                    { name: 'DeepSeek V4-Flash',  per1k: 0.0001 },
-                    { name: 'Llama 4-70B',        per1k: 0.00015 },
-                    { name: 'DeepSeek V4-Pro',    per1k: 0.0017 },
-                    { name: 'GPT-5.5 Mini',       per1k: 0.0025 },
-                    { name: 'Claude 4.7 Sonnet',  per1k: 0.0030 },
-                    { name: 'OpenAI o4-mini',     per1k: 0.0110 },
-                    { name: 'Gemini 2.0 Ultra',   per1k: 0.0125 },
-                    { name: 'OpenAI o4-preview',  per1k: 0.0150 },
-                    { name: 'Claude 4.7 Opus',    per1k: 0.0250 },
-                    { name: 'GPT-5.5 Max',        per1k: 0.0300 }
-                ],
-                lastUpdated: '2026-04-24',
-                getModel() {
-                    return this.modelList.find(m => m.name === this.selectedModel);
-                },
-                applyComplexity(level) {
-                    this.complexity = level;
-                    if (level === 'simple')   { this.loops = 5;  this.compoundingFactor = 0.10; }
-                    if (level === 'feature')  { this.loops = 15; this.compoundingFactor = 0.15; }
-                    if (level === 'refactor') { this.loops = 30; this.compoundingFactor = 0.20; }
-                },
-                calculateTotal() {
-                    const model = this.getModel();
-                    if (!model) return '0.0000';
-                    const context = parseInt(this.inputTokens);
-                    const loops = parseInt(this.loops);
-                    const cf = this.compoundingFactor;
-                    const totalCost = (context * Math.pow(1 + cf, loops)) * (model.per1k / 1000);
-                    return totalCost.toFixed(4);
-                },
-                copyResult() {
-                    const text = '$' + this.calculateTotal() + ' — ' + this.selectedModel + ' (via TokenBurn.org)';
-                    const done = () => {
-                        this.copied = true;
-                        setTimeout(() => { this.copied = false; }, 2000);
-                    };
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(text).then(done).catch(() => {
-                            this.fallbackCopy(text); done();
-                        });
-                    } else {
-                        this.fallbackCopy(text); done();
-                    }
-                },
-                fallbackCopy(text) {
-                    const ta = document.createElement('textarea');
-                    ta.value = text;
-                    ta.style.position = 'fixed';
-                    ta.style.opacity = '0';
-                    document.body.appendChild(ta);
-                    ta.select();
-                    try { document.execCommand('copy'); } catch (e) {}
-                    document.body.removeChild(ta);
-                }
-            }
+    return {
+        inputTokens: 2000,
+        loops: 5,
+        complexity: 'simple',
+        compoundingFactor: 0.10,
+        selectedModel: 'DeepSeek V4-Flash',
+        copied: false,
+        modelList: [
+            { name: 'DeepSeek V4-Flash',  per1k: 0.0001 },
+            { name: 'Llama 4-70B',        per1k: 0.00015 },
+            { name: 'DeepSeek V4-Pro',    per1k: 0.0017 },
+            { name: 'GPT-5.5 Mini',       per1k: 0.0025 },
+            { name: 'Claude 4.7 Sonnet',  per1k: 0.0030 },
+            { name: 'OpenAI o4-mini',     per1k: 0.0110 },
+            { name: 'Gemini 2.0 Ultra',   per1k: 0.0125 },
+            { name: 'OpenAI o4-preview',  per1k: 0.0150 },
+            { name: 'Claude 4.7 Opus',    per1k: 0.0250 },
+            { name: 'GPT-5.5 Max',        per1k: 0.0300 }
+        ],
+        applyComplexity(level) {
+            this.complexity = level;
+            if (level === 'simple')   { this.loops = 5;  this.compoundingFactor = 0.10; }
+            if (level === 'feature')  { this.loops = 15; this.compoundingFactor = 0.15; }
+            if (level === 'refactor') { this.loops = 30; this.compoundingFactor = 0.20; }
+        },
+        calculateTotal() {
+            const model = this.modelList.find(m => m.name === this.selectedModel);
+            const total = (this.inputTokens * Math.pow(1 + this.compoundingFactor, this.loops)) * (model.per1k / 1000);
+            return total.toFixed(4);
+        },
+        copyResult() {
+            // Cleaned up the formatting here to remove the old "via TokenBurn" string
+            const report = `TOKENBURN INFRASTRUCTURE REPORT\n` +
+                         `-------------------------------\n` +
+                         `Model:      ${this.selectedModel}\n` +
+                         `Context:    ${parseInt(this.inputTokens).toLocaleString()} tokens\n` +
+                         `Recursive:  ${this.loops} loops\n` +
+                         `Total Burn: $${this.calculateTotal()}\n` +
+                         `-------------------------------\n` +
+                         `Generated at tokenburn.org`;
+            
+            navigator.clipboard.writeText(report).then(() => {
+                this.copied = true;
+                setTimeout(() => this.copied = false, 2000);
+            });
         }
+    }
+}
     </script>
 </body>
 </html>
