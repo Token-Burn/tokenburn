@@ -39,20 +39,20 @@
         .main-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: start; }
         @media (min-width: 900px) { .main-grid { grid-template-columns: 1.8fr 1.2fr; } }
 
+        /* INPUT CARD */
         .card { 
             background: #0f0f0f; 
             border: 1px solid #1a2e1a; 
             padding: 30px; 
             border-radius: 12px;
-            display: flex;
-            flex-direction: column;
         }
 
+        /* RESULT SIDEBAR */
         .result-card { 
             background: #000; 
             border: 2px solid #a3e635; 
             text-align: center; 
-            padding: 40px 30px;
+            padding: 35px 25px;
             border-radius: 12px;
             box-shadow: 0 0 30px rgba(163, 230, 53, 0.1);
         }
@@ -83,10 +83,8 @@
             background-repeat: no-repeat; 
             background-position: right 1.2rem center; 
             background-size: 1.1em; 
-            cursor: pointer; 
         }
 
-        select option { background: #141414; }
         select option:nth-child(odd) { color: #fbbf24; }
         select option:nth-child(even) { color: #ffffff; }
 
@@ -94,82 +92,47 @@
             width: 100%; 
             height: 10px; 
             background: #1a1a1a; 
-            border-radius: 10px; 
-            outline: none; 
-            margin-top: 15px;
             accent-color: #fbbf24; 
-            cursor: pointer; 
+            margin-top: 15px;
         }
 
-        .val-display { display: flex; justify-content: space-between; align-items: baseline; }
         .big-num { color: #fbbf24; font-size: 24px; font-weight: 700; }
 
-        .complexity-toggle { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 12px; 
-        }
-
+        .complexity-toggle { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
         .complexity-btn { 
-            background: transparent; 
-            color: #a3e635; 
-            border: 1px solid rgba(163, 230, 53, 0.3); 
-            padding: 22px 15px; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            text-align: left; 
+            background: transparent; color: #a3e635; border: 1px solid rgba(163, 230, 53, 0.3); 
+            padding: 22px 15px; border-radius: 10px; cursor: pointer; text-align: left; 
         }
-
         .complexity-btn.active { background: #a3e635; color: #000; border-color: #a3e635; }
-        .cx-label { display: block; font-size: 14px; font-weight: 800; text-transform: uppercase; }
-        .cx-meta { display: block; font-size: 11px; margin-top: 4px; opacity: 0.8; }
 
-        .total-price { font-size: 56px; font-weight: 800; margin: 20px 0; color: #FFFFFF; letter-spacing: -2px; }
-        
+        .total-price { font-size: 52px; font-weight: 800; margin: 15px 0; color: #FFFFFF; letter-spacing: -2px; }
+
+        /* IN-SIDEBAR SUPPORT DATA */
+        .support-meta-wrap {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #1a1a1a;
+            text-align: left;
+        }
+
+        .support-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 11px; }
+        .support-key { color: #444; text-transform: uppercase; font-weight: 800; }
+        .support-val { color: #888; font-family: monospace; }
+        .status-active { color: #a3e635; }
+
         .copy-btn { 
-            background: transparent; 
-            color: #a3e635; 
-            border: 2px solid #a3e635; 
-            padding: 16px; 
-            border-radius: 10px; 
-            font-size: 12px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            width: 100%;
+            background: transparent; color: #a3e635; border: 2px solid #a3e635; 
+            padding: 16px; border-radius: 10px; font-size: 12px; font-weight: 800; 
+            text-transform: uppercase; cursor: pointer; width: 100%; margin-top: 20px;
         }
-
-        /* SUPPORT DATA PANEL */
-        .support-panel {
-            margin-top: 40px;
-            padding: 20px;
-            border: 1px dashed #1a1a1a;
-            border-radius: 8px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            background: rgba(15, 15, 15, 0.5);
-        }
-
-        .support-item { display: flex; flex-direction: column; gap: 4px; }
-        .support-label { font-size: 10px; color: #444; text-transform: uppercase; font-weight: 800; }
-        .support-value { font-size: 12px; color: #888; font-family: monospace; }
-        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a3e635; margin-right: 6px; }
+        .copy-btn:hover { background: #a3e635; color: #000; }
 
         footer { 
-            margin-top: 30px; 
-            width: 100%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 25px;
-            color: #333;
-            font-size: 11px;
+            margin-top: 60px; width: 100%; display: flex; justify-content: space-between; 
+            border-top: 1px solid #1a1a1a; padding-top: 25px; font-size: 11px;
         }
-
-        .footer-left { display: flex; gap: 24px; }
-        footer a { color: #666; text-decoration: none; text-transform: uppercase; font-weight: 700; }
+        .footer-links { display: flex; gap: 20px; }
+        footer a { color: #666; text-decoration: none; font-weight: 700; text-transform: uppercase; }
         footer a:hover { color: #fbbf24; }
     </style>
 </head>
@@ -192,7 +155,7 @@
                 </div>
 
                 <div class="input-group">
-                    <div class="val-display">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
                         <label>Initial Prompt Context</label>
                         <span class="big-num" x-text="parseInt(inputTokens).toLocaleString()"></span>
                     </div>
@@ -200,7 +163,7 @@
                 </div>
 
                 <div class="input-group">
-                    <div class="val-display">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
                         <label>Recursive Agent Loops</label>
                         <span class="big-num" x-text="loops"></span>
                     </div>
@@ -211,53 +174,52 @@
                     <label>Task Complexity Profile</label>
                     <div class="complexity-toggle">
                         <button type="button" class="complexity-btn" :class="{ active: complexity === 'simple' }" @click="applyComplexity('simple')">
-                            <span class="cx-label">[01] Simple</span>
-                            <span class="cx-meta">5 loops // 10%</span>
+                            <span style="display:block; font-size: 13px; font-weight:800;">[01] SIMPLE</span>
+                            <span style="font-size: 10px; opacity:0.6;">5 LOOPS // 10%</span>
                         </button>
                         <button type="button" class="complexity-btn" :class="{ active: complexity === 'feature' }" @click="applyComplexity('feature')">
-                            <span class="cx-label">[02] Feature</span>
-                            <span class="cx-meta">15 loops // 15%</span>
+                            <span style="display:block; font-size: 13px; font-weight:800;">[02] FEATURE</span>
+                            <span style="font-size: 10px; opacity:0.6;">15 LOOPS // 15%</span>
                         </button>
                         <button type="button" class="complexity-btn" :class="{ active: complexity === 'deep' }" @click="applyComplexity('deep')">
-                            <span class="cx-label">[03] Deep</span>
-                            <span class="cx-meta">30 loops // 20%</span>
+                            <span style="display:block; font-size: 13px; font-weight:800;">[03] DEEP</span>
+                            <span style="font-size: 10px; opacity:0.6;">30 LOOPS // 20%</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="card result-card">
+            <div class="result-card">
                 <label>Estimated Session Burn</label>
                 <div class="total-price" x-text="'$' + calculateTotal()"></div>
-                <p style="font-size: 12px; color: #9ca3af; text-transform: uppercase;" x-text="selectedModel"></p>
-                <button type="button" class="copy-btn" @click="copyResult()">Copy Quote Report</button>
-            </div>
-        </div>
+                <p style="font-size: 11px; color: #9ca3af; text-transform: uppercase; font-weight: 600;" x-text="selectedModel"></p>
+                
+                <div class="support-meta-wrap">
+                    <div class="support-row">
+                        <span class="support-key">Site ID</span>
+                        <span class="support-val">tb-prod-882</span>
+                    </div>
+                    <div class="support-row">
+                        <span class="support-key">Netlify Status</span>
+                        <span class="support-val status-active">● Active</span>
+                    </div>
+                    <div class="support-row">
+                        <span class="support-key">Build Ref</span>
+                        <span class="support-val">#429-XF</span>
+                    </div>
+                </div>
 
-        <div class="support-panel">
-            <div class="support-item">
-                <span class="support-label">Netlify Site ID</span>
-                <span class="support-value">tb-prod-882-xf92</span>
-            </div>
-            <div class="support-item">
-                <span class="support-label">Support Status</span>
-                <span class="support-value"><span class="status-dot"></span>Active Premium</span>
-            </div>
-            <div class="support-item">
-                <span class="support-label">Last Build</span>
-                <span class="support-value">2026-04-24 23:45 UTC</span>
+                <button type="button" class="copy-btn" @click="copyQuote()">Copy Quote Report</button>
             </div>
         </div>
 
         <footer>
-            <div class="footer-left">
+            <div class="footer-links">
                 <a href="#">Terms of Use</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Contact Support</a>
             </div>
-            <div class="footer-right">
-                &copy; 2026 TOKENBURN.ORG // PRIVATE BETA
-            </div>
+            <div style="color: #333;">&copy; 2026 TOKENBURN.ORG // PRIVATE BETA</div>
         </footer>
     </div>
 
@@ -270,26 +232,33 @@
                 compoundingFactor: 0.20,
                 selectedModel: 'GPT-5.5 Max',
                 modelList: [
-                    { name: 'DeepSeek V4-Flash',  per1k: 0.0001 },
-                    { name: 'Llama 4-70B',        per1k: 0.00015 },
-                    { name: 'DeepSeek V4-Pro',    per1k: 0.0017 },
-                    { name: 'GPT-5.5 Mini',       per1k: 0.0025 },
-                    { name: 'Claude 4.7 Sonnet',  per1k: 0.0030 },
-                    { name: 'Gemini 2.0 Ultra',   per1k: 0.0125 },
-                    { name: 'GPT-5.5 Max',        per1k: 0.0300 }
+                    { name: 'DeepSeek V4-Flash', per1k: 0.0001 },
+                    { name: 'Llama 4-70B', per1k: 0.00015 },
+                    { name: 'GPT-5.5 Mini', per1k: 0.0025 },
+                    { name: 'GPT-5.5 Max', per1k: 0.0300 }
                 ],
                 applyComplexity(level) {
                     this.complexity = level;
-                    if (level === 'simple')   { this.loops = 5;  this.compoundingFactor = 0.10; }
-                    if (level === 'feature')  { this.loops = 15; this.compoundingFactor = 0.15; }
-                    if (level === 'deep')     { this.loops = 30; this.compoundingFactor = 0.20; }
+                    if (level === 'simple') { this.loops = 5; this.compoundingFactor = 0.10; }
+                    if (level === 'feature') { this.loops = 15; this.compoundingFactor = 0.15; }
+                    if (level === 'deep') { this.loops = 30; this.compoundingFactor = 0.20; }
                 },
                 calculateTotal() {
                     const model = this.modelList.find(m => m.name === this.selectedModel);
                     const total = (this.inputTokens * Math.pow(1 + this.compoundingFactor, this.loops)) * (model.per1k / 1000);
                     return total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4});
                 },
-                copyResult() { alert('Copied'); }
+                async copyQuote() {
+                    const report = {
+                        site: "tb-prod-882",
+                        model: this.selectedModel,
+                        config: { loops: this.loops, complexity: this.complexity },
+                        estimated_burn: `$${this.calculateTotal()}`,
+                        timestamp: new Date().toISOString()
+                    };
+                    await navigator.clipboard.writeText(JSON.stringify(report, null, 2));
+                    alert("Full Quote Report copied to clipboard as JSON.");
+                }
             }
         }
     </script>
