@@ -31,7 +31,6 @@
         .input-group { margin-bottom: 30px; }
         label { display: block; font-size: 11px; font-weight: 800; color: #a3e635; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.1em; }
 
-        /* DROPDOWN COLOR ALTERNATION - Restored & Verified */
         select { 
             width: 100%; background: #111; color: #fbbf24; border: 1px solid #333; 
             padding: 16px; border-radius: 8px; font-size: 15px; appearance: none;
@@ -54,7 +53,6 @@
 
         .total-price { font-size: 52px; font-weight: 800; margin: 15px 0; color: #FFFFFF; letter-spacing: -2px; }
 
-        /* Support Rows - High Contrast Text */
         .support-meta-wrap { margin-top: 25px; padding-top: 20px; border-top: 1px solid #222; text-align: left; }
         .support-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 12px; }
         .support-key { color: #AAAAAA; text-transform: uppercase; font-weight: 800; }
@@ -68,7 +66,6 @@
         .copy-btn { background: transparent; color: #a3e635; border: 2px solid #a3e635; }
         .coffee-btn { background: #fbbf24; color: #000 !important; border: none; margin-bottom: 20px; }
 
-        /* MODAL FIX FOR FOOTER 404s */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: #0a0a0a; border: 1px solid #a3e635; padding: 40px; border-radius: 12px; max-width: 600px; width: 100%; position: relative; }
         .close-modal { position: absolute; top: 20px; right: 20px; color: #a3e635; cursor: pointer; font-weight: 900; }
@@ -130,3 +127,77 @@
                         </button>
                     </div>
                 </div>
+            </div>
+
+            <div class="result-card">
+                <a href="https://buymeacoffee.com/tokenburn" target="_blank" class="btn-action coffee-btn">☕ Buy Me a Coffee</a>
+                <label>Estimated Session Burn</label>
+                <div class="total-price" x-text="'$' + calculateTotal()"></div>
+                <p style="font-size: 12px; color: #a3e635; text-transform: uppercase; font-weight: 800; margin-bottom: 20px;" x-text="selectedModel"></p>
+                <div class="support-meta-wrap">
+                    <div class="support-row"><span class="support-key">Monthly Hosting</span><span class="support-val">$14.00</span></div>
+                    <div class="support-row"><span class="support-key">API Maintenance</span><span class="support-val">$28.50</span></div>
+                    <div class="support-row"><span class="support-key">Beta Status</span><span class="support-val" style="color:#fbbf24;">OPEN ACCESS</span></div>
+                </div>
+                <button type="button" class="btn-action copy-btn" @click="copyQuote()">Copy Full Quote</button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <button @click="openModal('Terms of Use', 'TokenBurn is in Private Beta. Use is for estimation only. No commercial redistribution of data.')">Terms</button>
+                <button @click="openModal('Privacy Policy', 'Calculations happen client-side. We do not store or transmit your tokens.')">Privacy</button>
+                <button @click="openModal('Contact Support', 'Email: support@tokenburn.org for API or integration issues.')">Support</button>
+            </div>
+            <div class="copyright">&copy; 2026 TOKENBURN.ORG // PRIVATE BETA</div>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" x-show="modalOpen" x-cloak @click.self="modalOpen = false">
+        <div class="modal-content">
+            <span class="close-modal" @click="modalOpen = false">[X] ESC</span>
+            <h2 class="green" x-text="modalTitle" style="text-transform: uppercase; margin-top: 0;"></h2>
+            <p style="line-height: 1.6; color: #ccc;" x-text="modalText"></p>
+        </div>
+    </div>
+
+    <script>
+        function burnEngine() {
+            return {
+                modalOpen: false, modalTitle: '', modalText: '',
+                inputTokens: 2000, loops: 30, complexity: 'deep', compoundingFactor: 0.20,
+                selectedModel: 'GPT-5.5 Max',
+                modelList: [
+                    { name: 'DeepSeek V4-Flash', per1k: 0.0001 },
+                    { name: 'Llama 4-70B', per1k: 0.00015 },
+                    { name: 'Grok-3 Mini', per1k: 0.0005 },
+                    { name: 'Claude 4.2 Haiku', per1k: 0.0008 },
+                    { name: 'GPT-5.5 Mini', per1k: 0.0025 },
+                    { name: 'DeepSeek V4-Pro', per1k: 0.0035 },
+                    { name: 'Claude 4.7 Sonnet', per1k: 0.0060 },
+                    { name: 'Gemini 2.5 Ultra', per1k: 0.0125 },
+                    { name: 'Claude 4.8 Opus', per1k: 0.0150 },
+                    { name: 'GPT-5.5 Max', per1k: 0.0300 }
+                ],
+                applyComplexity(level) {
+                    this.complexity = level;
+                    if (level === 'simple') { this.loops = 5; this.compoundingFactor = 0.10; }
+                    if (level === 'feature') { this.loops = 15; this.compoundingFactor = 0.15; }
+                    if (level === 'deep') { this.loops = 30; this.compoundingFactor = 0.20; }
+                },
+                openModal(t, txt) { this.modalTitle = t; this.modalText = txt; this.modalOpen = true; },
+                calculateTotal() {
+                    const model = this.modelList.find(m => m.name === this.selectedModel);
+                    const total = (this.inputTokens * Math.pow(1 + this.compoundingFactor, this.loops)) * (model.per1k / 1000);
+                    return total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                },
+                async copyQuote() {
+                    const report = `TOKENBURN ESTIMATE\nModel: ${this.selectedModel}\nTotal Burn: $${this.calculateTotal()}\nTimestamp: ${new Date().toLocaleString()}`;
+                    await navigator.clipboard.writeText(report);
+                    alert("Quote copied to clipboard.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
