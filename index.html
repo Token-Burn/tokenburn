@@ -18,66 +18,59 @@
         * { font-family: "Inter", sans-serif !important; box-sizing: border-box; }
         body { background: #000; color: #fff; margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         .container { max-width: 1100px; width: 100%; }
+        
         header { text-align: center; margin-bottom: 50px; }
         h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; letter-spacing: -3px; text-transform: uppercase; margin: 0; line-height: 0.9; }
         .yellow { color: #fbbf24; }
         .green { color: #a3e635; }
+        
         .main-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: start; }
         @media (min-width: 900px) { .main-grid { grid-template-columns: 1.8fr 1.2fr; } }
         
-        .card { background: #0a0a0a; border: 1px solid #1a2e1a; padding: 30px; border-radius: 12px; }
+        .card { background: #0d0d0d; border: 1px solid #333; padding: 30px; border-radius: 12px; }
         
-        /* RESULT CARD BASE */
-        .result-card { background: #000; border: 2px solid #a3e635; padding: 35px 25px; border-radius: 12px; display: flex; flex-direction: column; text-align: center; transition: all 0.4s ease; position: relative; }
+        /* RESULT CARD - LEGIBILITY FOCUS */
+        .result-card { background: #000; border: 2px solid #a3e635; padding: 35px 25px; border-radius: 12px; display: flex; flex-direction: column; text-align: center; transition: all 0.4s ease; }
         
-        /* HIGH CONTRAST RED ZONE */
-        .red-zone { border-color: #ff4d4d !important; background: #220505 !important; animation: redPulse 2s infinite ease-in-out; }
-        .red-zone .total-price { color: #ff4d4d !important; }
-        .red-zone .model-badge { color: #ff4d4d !important; }
-        .red-zone label { color: #ff4d4d !important; }
-        .red-zone .copy-btn { color: #ff4d4d !important; border-color: #ff4d4d !important; }
+        /* DANGER MODE - HIGH CONTRAST RED */
+        .red-zone { border-color: #ff3333 !important; background: #2a0000 !important; animation: redPulse 2s infinite ease-in-out; }
+        .red-zone .total-price, .red-zone .model-badge, .red-zone label { color: #ff3333 !important; }
+        .red-zone .copy-btn { color: #ff3333 !important; border-color: #ff3333 !important; }
 
         @keyframes redPulse {
-            0% { box-shadow: 0 0 0px rgba(255, 77, 77, 0); }
-            50% { box-shadow: 0 0 35px rgba(255, 77, 77, 0.4); background: #330808 !important; }
-            100% { box-shadow: 0 0 0px rgba(255, 77, 77, 0); }
+            0% { box-shadow: 0 0 0px rgba(255, 51, 51, 0); }
+            50% { box-shadow: 0 0 40px rgba(255, 51, 51, 0.4); }
+            100% { box-shadow: 0 0 0px rgba(255, 51, 51, 0); }
         }
 
         .total-price { font-size: 64px; font-weight: 800; margin: 10px 0; color: #fff; letter-spacing: -2px; }
-        .model-badge { font-size: 12px; color: #a3e635; text-transform: uppercase; font-weight: 800; margin-bottom: 25px; }
+        .model-badge { font-size: 13px; color: #a3e635; text-transform: uppercase; font-weight: 800; margin-bottom: 25px; }
         
-        .btn-action { display: block; text-decoration: none; text-align: center; padding: 18px; border-radius: 10px; font-size: 13px; font-weight: 900; text-transform: uppercase; cursor: pointer; width: 100%; border: none; transition: opacity 0.2s; }
-        .btn-action:hover { opacity: 0.9; }
+        .btn-action { display: block; text-decoration: none; text-align: center; padding: 18px; border-radius: 10px; font-size: 13px; font-weight: 900; text-transform: uppercase; cursor: pointer; width: 100%; border: none; }
         .copy-btn { background: transparent; color: #a3e635; border: 2px solid #a3e635; margin-bottom: 12px; }
         .coffee-btn { background: #fbbf24; color: #000 !important; margin-bottom: 30px; }
 
-        .support-meta-wrap { text-align: left; border-top: 1px solid #222; padding-top: 20px; }
-        .support-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 12px; }
-        .support-key { color: #AAA; text-transform: uppercase; font-weight: 800; }
+        .support-meta-wrap { text-align: left; border-top: 1px solid #333; padding-top: 20px; }
+        .support-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; }
+        .support-key { color: #fff; text-transform: uppercase; font-weight: 800; opacity: 0.7; }
+        .support-val { color: #fff; font-weight: 600; }
         
         .input-group { margin-bottom: 30px; }
-        label { display: block; font-size: 11px; font-weight: 800; color: #a3e635; text-transform: uppercase; margin-bottom: 12px; }
-        select { width: 100%; background: #111; color: #fbbf24; border: 1px solid #333; padding: 16px; border-radius: 8px; font-size: 15px; appearance: none; cursor: pointer; }
-        input[type="range"] { width: 100%; height: 10px; background: #222; accent-color: #fbbf24; cursor: pointer; margin-top: 10px; }
-        .big-num { color: #fbbf24; font-size: 24px; font-weight: 700; }
+        label { display: block; font-size: 12px; font-weight: 800; color: #a3e635; text-transform: uppercase; margin-bottom: 12px; }
+        select { width: 100%; background: #1a1a1a; color: #fff; border: 1px solid #444; padding: 16px; border-radius: 8px; font-size: 15px; appearance: none; cursor: pointer; }
+        input[type="range"] { width: 100%; height: 10px; background: #333; accent-color: #fbbf24; cursor: pointer; margin-top: 10px; }
+        .big-num { color: #fbbf24; font-size: 26px; font-weight: 800; }
+        
         .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .comp-btn { background: transparent; color: #a3e635; border: 1px solid #a3e63544; padding: 15px 5px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 800; transition: all 0.2s; }
+        .comp-btn { background: transparent; color: #fff; border: 1px solid #444; padding: 15px 5px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 800; }
         .comp-btn.active { background: #a3e635; color: #000; border-color: #a3e635; }
 
-        footer { margin-top: 80px; display: flex; justify-content: space-between; border-top: 1px solid #333; padding: 40px 0; font-size: 12px; width: 100%; }
-        .footer-links { display: flex; gap: 25px; }
-        
-        /* FOOTER BUTTONS - NO UNDERLINE */
-        footer button { 
-            background: none; 
-            border: none; 
-            color: #fff; 
-            text-decoration: none; 
-            cursor: pointer; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            padding: 0; 
-        }
+        /* FOOTER - LEGIBILITY FIX */
+        footer { margin-top: 80px; display: flex; justify-content: space-between; border-top: 1px solid #333; padding: 40px 0; font-size: 13px; width: 100%; }
+        .footer-links { display: flex; gap: 30px; }
+        footer button { background: none; border: none; color: #fff; text-decoration: none; cursor: pointer; font-weight: 800; text-transform: uppercase; padding: 0; opacity: 0.9; }
+        footer button:hover { opacity: 1; text-decoration: underline; }
+        .copyright { color: #fff; font-weight: 600; opacity: 0.6; } /* Much lighter than before */
     </style>
 </head>
 <body x-data="burnEngine()">
@@ -90,15 +83,10 @@
                     <label>Intelligence Engine</label>
                     <select x-model="selectedModel" @change="updateModelName($event)">
                         <option value="0.0001">DeepSeek V4-Flash — $0.0001</option>
-                        <option value="0.00015">Llama 4-70B — $0.00015</option>
                         <option value="0.0005">Grok-3 Mini — $0.0005</option>
-                        <option value="0.0008">Claude 4.2 Haiku — $0.0008</option>
                         <option value="0.0025">GPT-5.5 Mini — $0.0025</option>
-                        <option value="0.0035">DeepSeek V4-Pro — $0.0035</option>
                         <option value="0.0060">Claude 4.7 Sonnet — $0.0060</option>
-                        <option value="0.0125">Gemini 2.5 Ultra — $0.0125</option>
-                        <option value="0.0150">Claude 4.8 Opus — $0.0150</option>
-                        <option value="0.0300">GPT-5.5 Max — $0.0300</option>
+                        <option value="0.0300" selected>GPT-5.5 Max — $0.0300</option>
                     </select>
                 </div>
                 
@@ -127,23 +115,22 @@
                 </div>
                 
                 <button class="btn-action copy-btn" @click="copy()">Copy Full Quote</button>
-                
                 <a href="https://buymeacoffee.com/tokenburn" target="_blank" class="btn-action coffee-btn">☕ Buy Me a Coffee</a>
 
                 <div class="support-meta-wrap">
-                    <div class="support-row"><span class="support-key">Monthly Hosting</span><span style="font-weight:600; color:#fff;">$14.00</span></div>
-                    <div class="support-row"><span class="support-key">API Maintenance</span><span style="font-weight:600; color:#fff;">$28.50</span></div>
-                    <div class="support-row"><span class="support-key">Beta Status</span><span style="color:#fbbf24; font-weight:600;">OPEN ACCESS</span></div>
+                    <div class="support-row"><span class="support-key">Monthly Hosting</span><span class="support-val">$14.00</span></div>
+                    <div class="support-row"><span class="support-key">API Maintenance</span><span class="support-val">$28.50</span></div>
+                    <div class="support-row"><span class="support-key">Beta Status</span><span style="color:#fbbf24; font-weight:800;">OPEN ACCESS</span></div>
                 </div>
             </div>
         </div>
 
         <footer>
             <div class="footer-links">
-                <button @click="alert('Standard beta terms apply.')">Terms</button>
-                <button @click="alert('No personal data is stored or tracked.')">Privacy</button>
+                <button @click="alert('Beta terms: Results are estimates only.')">Terms</button>
+                <button @click="alert('Privacy: We store nothing.')">Privacy</button>
             </div>
-            <div style="color: #666;">&copy; 2026 TOKENBURN.ORG</div>
+            <div class="copyright">&copy; 2026 TOKENBURN.ORG</div>
         </footer>
     </div>
 
